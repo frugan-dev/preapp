@@ -1,0 +1,70 @@
+#https://www.gitignore.io
+#https://git-scm.com/docs/gitignore
+#https://stackoverflow.com/a/5534865
+#https://coderwall.com/p/quessg/exclude-files-subfolder-in-gitignore
+
+# Example to exclude everything except a specific directory foo/bar (note the /* - without the slash, the wildcard would also exclude everything within foo/bar):
+#
+#/*
+#!/foo
+#/foo/*
+#!/foo/bar
+
+#/home/* Matches every file/directory directly in the /home directory.
+#/home/** Matches every file/directory in any directory inside /home.
+
+
+# Created by https://www.gitignore.io/api/composer
+
+### Composer ###
+composer.phar
+**/vendor/
+
+# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+# End of https://www.gitignore.io/api/composer
+
+
+### App ###
+.env
+.env.*
+!.env.sample
+
+auth.json
+
+app/src/ModCustom/*
+!app/src/ModCustom/*Tld.php
+
+test/
+
+
+### Server ###
+cgi-bin/
+etc/
+fcgi-bin/
+logs/
+tmp/
+
+VAR/
+.settings/
+
+.buildpath
+.project
+
+**/stats/
+
+
+### Various ###
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.log
+*.swp
+*.swo
+*.bak
+*~

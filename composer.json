@@ -1,0 +1,24 @@
+{
+  	"name": "ewake/preapp",
+	"description": "PreApp",
+	"license": "MIT",
+	"config": {
+		"preferred-install" : "dist"
+	},
+	"autoload": {
+		"psr-4" : {
+			"PreApp\\" : "app/src/"
+		}
+	},
+	"require": {
+	    "monolog/monolog" : "^1.2",
+	    "vlucas/phpdotenv" : "^2.5",
+		"oscarotero/env" : "^1.1",
+		"kint-php/kint" : "^3.0",
+		"pimple/pimple": "^3.2",
+        "container-interop/container-interop": "^1.2",
+  	  	"nette/utils": "^2.5",
+  	  	"google/recaptcha": "^1.2",
+  	  	"wyrihaximus/html-compress": "^1.4"
+	}
+}
