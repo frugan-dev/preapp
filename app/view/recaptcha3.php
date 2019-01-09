@@ -7,20 +7,19 @@
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   
-  	<style>
-  	.loader-wrapper {
-  		line-height: 30px;
-  	}
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.min.css">
+	<style>
+	body {
+		padding: 1rem;
+	}
   	/* https://www.w3schools.com/howto/howto_css_loader.asp */
 	.loader {
-	  border: 5px solid #f3f3f3;
-	  border-top: 5px solid #3498db;
+	  border: 5px solid hsl(0, 0%, 86%);
+	  border-top: 5px solid hsl(204, 86%, 53%);
 	  border-radius: 50%;
-	  width: 20px;
-	  height: 20px;
+	  width: 30px;
+	  height: 30px;
 	  animation: spin 2s linear infinite;
-	  float: left;
-	  margin-right: 1rem;
 	}	
 	@keyframes spin {
 	  0% { transform: rotate(0deg); }
@@ -31,17 +30,27 @@
 </head>
 <body>
 
-	<div class="loader-wrapper">
-		<div class="loader"></div> <?php echo _('SPAM check, please wait..') ?>
+	<div class="notification">	
+		<div class="media">
+			<div class="media-left">
+				<div class="loader"></div>
+			</div> 
+			<div class="media-content">
+				<?php echo _('SPAM check, please wait..') ?>
+			</div>
+		</div>
 	</div>
 
 	<form method="post" action="" name="form">
 		<input type="hidden" name="preapp_postdata" value="<?php echo base64_encode($postdata) ?>">
 		<input type="hidden" name="g-recaptcha-response">
 	</form>
+	
+	<small class="is-size-7"><?php printf(_('%1$s and try again if the trial lasts too long.'), '<a href="javascript:history.back()">'._('Go back').'</a>') ?></small>
   
   	<script src="//www.google.com/recaptcha/api.js?render=<?php echo env('PREAPP_GOOGLE_RECAPTCHA3_PUBLIC_KEY') ?>"></script>
 	<script>
+	//https://github.com/google/recaptcha/issues/269
 	(function(grecaptcha, sitekey) {
 		grecaptcha.ready(function() {
 		    grecaptcha.execute(sitekey, {action: 'homepage'}).then(function(token) {
