@@ -4,7 +4,7 @@ PreApp is a simple PHP application that uses [auto_prepend_file](http://php.net/
 
 ### Modules
 
-- ObfuscateEmai
+- ObfuscateEmail
 - ReCaptcha3
 - MinifyHtml
 - NoJoomlaAdmin
