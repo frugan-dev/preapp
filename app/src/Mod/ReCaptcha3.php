@@ -12,11 +12,14 @@ class ReCaptcha3 extends \PreApp\Model
 				
 				$this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
-				if(isset($_POST['g-recaptcha-response'])) {
+				if(isset($_POST['g-recaptcha-response']) && isset($_POST['preapp_postdata'])) {
 					
 					$_POST = $_POST + json_decode(base64_decode($_POST['preapp_postdata']), true);
 					
 					unset($_POST['preapp_postdata']);
+					unset($_REQUEST['preapp_postdata']);
+					
+					$_REQUEST = $_REQUEST + $_POST;
 					
 					//http://stackoverflow.com/a/30848193
 					if(ini_get('allow_url_fopen')) {
