@@ -32,11 +32,11 @@ class ReCaptcha3 extends \PreApp\Model
 						//$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA3_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\SocketPost());
 					}
 					
-					$resp = $recaptcha->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR'));
+					$resp = $recaptcha->setScoreThreshold( env('PREAPP_RECAPTCHA3_SCORE_THRESHOLD') )->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR'));
 					
 					if( !$resp->isSuccess() && file_exists(PREAPP_ROOT.'/app/view/recaptcha3_error.php')) {
 	
-					    $this->get('Logger')->warning( __CLASS__ .' -> '. __FUNCTION__ , $resp->getErrorCodes() );
+					    $this->get('Logger')->warning( __CLASS__ .' -> '. __FUNCTION__ , $resp->toArray() );
 					    
 					    include PREAPP_ROOT.'/app/view/recaptcha3_error.php';
 						exit();
