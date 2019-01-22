@@ -32,7 +32,10 @@ class ReCaptcha3 extends \PreApp\Model
 						//$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA3_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\SocketPost());
 					}
 					
-					$resp = $recaptcha->setScoreThreshold( env('PREAPP_RECAPTCHA3_SCORE_THRESHOLD') )->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR'));
+					$resp = $recaptcha->setExpectedHostname( apache_getenv('HTTP_HOST') )
+								->setExpectedAction( $this->get('camelCaseDomain') ) // Note: actions may only contain alphanumeric characters and slashes, and must not be user-specific.
+								->setScoreThreshold( env('PREAPP_RECAPTCHA3_SCORE_THRESHOLD') )
+								->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR') );
 					
 					if( !$resp->isSuccess() && file_exists(PREAPP_ROOT.'/app/view/recaptcha3_error.php')) {
 	

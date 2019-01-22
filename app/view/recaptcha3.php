@@ -53,7 +53,7 @@
 	//https://github.com/google/recaptcha/issues/269
 	(function(grecaptcha, sitekey) {
 		grecaptcha.ready(function() {
-		    grecaptcha.execute(sitekey, {action: 'homepage'}).then(function(token) {
+		    grecaptcha.execute(sitekey, {action: '<?php echo $this->get('camelCaseDomain') ?>'}).then(function(token) {
 				var fields=document.form.getElementsByTagName('input');
 				for(var j=0;j<fields.length;j++) {
 					var field=fields[j];
