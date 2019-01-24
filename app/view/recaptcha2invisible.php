@@ -44,30 +44,38 @@
 	<form method="post" action="" name="form">
 		<input type="hidden" name="preapp_postdata" value="<?php echo base64_encode($postdata) ?>">
 		<input type="hidden" name="g-recaptcha-response">
+		<div class="g-recaptcha" data-sitekey="<?php echo env('PREAPP_GOOGLE_RECAPTCHA2_PUBLIC_KEY') ?>" data-callback="recaptchaCallback" data-size="invisible"></div>
 	</form>
 	
 	<small class="is-size-7"><?php printf(_('%1$s and try again if the trial lasts too long.'), '<a href="javascript:history.back()">'._('Go back').'</a>') ?></small>
-  
-  	<?php // To avoid race conditions with the api.js, either include the api.js before your scripts that call grecaptcha ?>
-  	<script src="//www.google.com/recaptcha/api.js?render=<?php echo env('PREAPP_GOOGLE_RECAPTCHA3_PUBLIC_KEY') ?>"></script>
+	
+	<?php 
+	// Note: your onload callback function must be defined before the reCAPTCHA API loads. To ensure there are no race conditions:
+	// - order your scripts with the callback first, and then reCAPTCHA
+	// - use the async and defer parameters in the script tags
+	?>
 	<script>
-	//https://github.com/google/recaptcha/issues/269
-	(function(grecaptcha, sitekey) {
-		grecaptcha.ready(function() {
-		    grecaptcha.execute(sitekey, {action: '<?php echo $this->get('camelCaseDomain') ?>'}).then(function(token) {
-				var fields=document.form.getElementsByTagName('input');
-				for(var j=0;j<fields.length;j++) {
-					var field=fields[j];
-					if('g-recaptcha-response'===field.getAttribute('name')) {
-						field.setAttribute('value', token);
-						
-						document.form.submit();
-						break;
-					}
+	(function() {
+		recaptchaOnloadCallback = function() {
+			grecaptcha.ready(function() {
+				grecaptcha.execute();
+			});
+		}
+		
+		recaptchaCallback = function(token) {
+			var fields=document.form.getElementsByTagName('input');
+			for(var j=0;j<fields.length;j++) {
+				var field=fields[j];
+				if('g-recaptcha-response'===field.getAttribute('name')) {
+					field.setAttribute('value', token);
+					
+					document.form.submit();
+					break;
 				}
-		    });
-		});
-	})(grecaptcha, '<?php echo env('PREAPP_GOOGLE_RECAPTCHA3_PUBLIC_KEY') ?>');
+			}
+		}
+	})();
 	</script>
+	<script src="//www.google.com/recaptcha/api.js?hl=en&onload=recaptchaOnloadCallback" async defer></script>
 </body>
 </html>

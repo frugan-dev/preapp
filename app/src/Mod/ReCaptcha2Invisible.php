@@ -2,7 +2,7 @@
 
 namespace PreApp\Mod;
 
-class ReCaptcha3 extends \PreApp\Model
+class ReCaptcha2Invisible extends \PreApp\Model
 {
 	public function prepend()
 	{
@@ -24,17 +24,15 @@ class ReCaptcha3 extends \PreApp\Model
 					//http://stackoverflow.com/a/30848193
 					if(ini_get('allow_url_fopen')) {
 					
-						$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA3_PRIVATE_KEY') );
+						$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA2_PRIVATE_KEY') );
 					
 					} else {
 					
-						$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA3_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\CurlPost());
-						//$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA3_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\SocketPost());
+						$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA2_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\CurlPost());
+						//$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA2_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\SocketPost());
 					}
 					
 					$resp = $recaptcha->setExpectedHostname( apache_getenv('HTTP_HOST') )
-								->setExpectedAction( $this->get('camelCaseDomain') ) // Note: actions may only contain alphanumeric characters and slashes, and must not be user-specific.
-								->setScoreThreshold( env('PREAPP_RECAPTCHA3_SCORE_THRESHOLD') )
 								->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR') );
 					
 					if( !$resp->isSuccess() && file_exists(PREAPP_ROOT.'/app/view/recaptcha_error.php')) {
@@ -45,11 +43,11 @@ class ReCaptcha3 extends \PreApp\Model
 						exit();
 					}
 					
-				} elseif(file_exists(PREAPP_ROOT.'/app/view/recaptcha3.php')) {
+				} elseif(file_exists(PREAPP_ROOT.'/app/view/recaptcha2invisible.php')) {
 					
 					$postdata = json_encode($_POST);
 					
-					include PREAPP_ROOT.'/app/view/recaptcha3.php';
+					include PREAPP_ROOT.'/app/view/recaptcha2invisible.php';
 					exit();
 				}
 			}

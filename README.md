@@ -5,6 +5,7 @@ PreApp is a simple PHP application that uses [auto_prepend_file](http://php.net/
 ### Modules
 
 - ObfuscateEmail
+- ReCaptcha2Invisible
 - ReCaptcha3
 - MinifyHtml
 - NoJoomlaAdmin
@@ -54,6 +55,8 @@ or vhosts.conf:
 
 ##### SPAM
 
+- https://recaptcha-demo.appspot.com
+- https://tehnoblog.org/google-no-captcha-invisible-recaptcha-first-experience-results-review/
 - https://github.com/kornelski/Sblam
 - http://www.spamhelp.org/software/listings/server-side/
 
