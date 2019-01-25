@@ -43,8 +43,7 @@
 
 	<form method="post" action="" name="form">
 		<input type="hidden" name="preapp_postdata" value="<?php echo base64_encode($postdata) ?>">
-		<input type="hidden" name="g-recaptcha-response">
-		<div class="g-recaptcha" data-sitekey="<?php echo env('PREAPP_GOOGLE_RECAPTCHA2_PUBLIC_KEY') ?>" data-callback="recaptchaCallback" data-size="invisible"></div>
+		<div class="g-recaptcha" data-sitekey="<?php echo env('PREAPP_GOOGLE_RECAPTCHA2_PUBLIC_KEY') ?>" data-callback="recaptchaSubmitCallback" data-size="invisible"></div>
 	</form>
 	
 	<small class="is-size-7"><?php printf(_('%1$s and try again if the trial lasts too long.'), '<a href="javascript:history.back()">'._('Go back').'</a>') ?></small>
@@ -62,17 +61,8 @@
 			});
 		}
 		
-		recaptchaCallback = function(token) {
-			var fields=document.form.getElementsByTagName('input');
-			for(var j=0;j<fields.length;j++) {
-				var field=fields[j];
-				if('g-recaptcha-response'===field.getAttribute('name')) {
-					field.setAttribute('value', token);
-					
-					document.form.submit();
-					break;
-				}
-			}
+		recaptchaSubmitCallback = function(token) {
+			document.form.submit();
 		}
 	})();
 	</script>
