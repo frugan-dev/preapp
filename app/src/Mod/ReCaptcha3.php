@@ -41,7 +41,7 @@ class ReCaptcha3 extends \PreApp\Model
 	
 					    $this->get('Logger')->warning( __CLASS__ .' -> '. __FUNCTION__ , $resp->toArray() );
 					    
-					    include PREAPP_ROOT.'/app/view/recaptcha_error.php';
+					    include_once PREAPP_ROOT.'/app/view/recaptcha_error.php';
 						exit();
 					}
 					
@@ -49,7 +49,7 @@ class ReCaptcha3 extends \PreApp\Model
 					
 					$postdata = json_encode($_POST);
 					
-					include PREAPP_ROOT.'/app/view/recaptcha3.php';
+					include_once PREAPP_ROOT.'/app/view/recaptcha3.php';
 					exit();
 				}
 			}

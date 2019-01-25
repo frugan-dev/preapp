@@ -19,6 +19,9 @@
         "container-interop/container-interop": "^1.2",
   	  	"nette/utils": "^2.5",
   	  	"google/recaptcha": "^1.2",
-  	  	"wyrihaximus/html-compress": "^1.4"
+  	  	"wyrihaximus/html-compress": "^1.4",
+  	  	"sentry/sentry": "^1.10",
+  	  	"filp/whoops": "^2.3",
+  	  	"league/booboo": "^2.0"
 	}
 }

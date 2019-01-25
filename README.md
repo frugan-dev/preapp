@@ -12,6 +12,8 @@ PreApp is a simple PHP application that uses [auto_prepend_file](http://php.net/
 - NoOpenCartAdmin
 - NoWpAdmin
 - NoWpLogin
+- Polyfill
+- Sentry
 
 ### Installation
 
