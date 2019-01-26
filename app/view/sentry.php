@@ -10,7 +10,7 @@ Sentry.configureScope((scope) => {
 	scope.setUser({
 		'ip_address': '<?php echo apache_getenv('REMOTE_ADDR') ?>',
 	});
-	scope.setTag( '<?php echo $this->get('camelCaseDomain') ?>' );
+	scope.setTag( '<?php echo $this->get('domain') ?>' );
 });
 </script>
 <!--<![endif]-->
