@@ -1,3 +1,5 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # PreApp
 
 PreApp is a simple PHP application that uses [auto_prepend_file](http://php.net/manual/it/ini.core.php#ini.auto-prepend-file) and [auto_append_file](http://php.net/manual/it/ini.core.php#ini.auto-append-file) directives.
@@ -7,6 +9,8 @@ PreApp is a simple PHP application that uses [auto_prepend_file](http://php.net/
 - ObfuscateEmail
 - ReCaptcha2Invisible
 - ReCaptcha3
+- ReCaptcha3Ajax
+- ReCaptcha3AjaxHtml
 - MinifyHtml
 - NoJoomlaAdmin
 - NoOpenCartAdmin
@@ -41,22 +45,30 @@ or vhosts.conf:
 </VirtualHost>
 ```
 
-### Resources
+### Changelog
 
-##### Email
+See auto-[CHANGELOG](CHANGELOG.md) file.
+
+### Contributing
+
+For your contributions please use the [git-flow workflow](https://danielkummer.github.io/git-flow-cheatsheet/).
+
+### Support
+
+<!-- 
+https://www.buymeacoffee.com/brand 
+https://stackoverflow.com/a/26138535/3929620
+https://github.com/nrobinson2000/donate-bitcoin
+https://bitcoin.stackexchange.com/a/48744
+https://github.com/KristinitaTest/KristinitaTest.github.io/blob/master/donate/Bitcoin-Protocol-Markdown.md
+-->
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="200" alt="Buy Me A Coffee">](https://buymeacoff.ee/frugan)
+
+### Usefull links
 
 - http://alistapart.com/article/gracefulemailobfuscation
-
-##### Compression
-
 - https://gist.github.com/hengkiardo/4023901
-
-##### PHP
-
 - https://www.electrictoolbox.com/php-automatically-append-prepend/
-
-##### SPAM
-
 - https://recaptcha-demo.appspot.com
 - https://tehnoblog.org/google-no-captcha-invisible-recaptcha-first-experience-results-review/
 - https://github.com/kornelski/Sblam
@@ -64,4 +76,5 @@ or vhosts.conf:
 
 ### License
 
-MIT
+(ɔ) Copyleft 2021 [Frugan](https://about.me/frugan)
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/), see [COPYING](COPYING) file.
