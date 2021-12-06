@@ -6,7 +6,7 @@ class NoWpAdmin extends \PreApp\Model
 {
 	public function prepend()
 	{
-		$path = parse_url(apache_getenv('REQUEST_URI'), PHP_URL_PATH);
+		$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		
 		if(!empty($path)) {
 			

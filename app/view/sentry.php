@@ -8,7 +8,7 @@ Sentry.init({
 });	
 Sentry.configureScope((scope) => {
 	scope.setUser({
-		'ip_address': '<?php echo apache_getenv('REMOTE_ADDR') ?>',
+		'ip_address': '<?php echo $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '' ?>',
 	});
 	scope.setTag( '<?php echo $this->get('domain') ?>' );
 });

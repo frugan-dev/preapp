@@ -6,7 +6,7 @@ class NoWpLogin extends \PreApp\Model
 {
 	public function prepend()
 	{
-		if( in_array(basename(apache_getenv('SCRIPT_NAME')), ['wp-login.php', 'wp-register.php'], true) ) {
+		if( in_array(basename($_SERVER['SCRIPT_NAME']), ['wp-login.php', 'wp-register.php'], true) ) {
 			
 			$this->set('skip', true);				
 		}

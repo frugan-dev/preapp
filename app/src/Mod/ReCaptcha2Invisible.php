@@ -6,9 +6,9 @@ class ReCaptcha2Invisible extends \PreApp\Model
 {
 	public function prepend()
 	{
-		if(apache_getenv('REQUEST_METHOD') === 'POST') {
+		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			
-			if(!apache_getenv('HTTP_X_REQUESTED_WITH') || mb_strtolower(apache_getenv('HTTP_X_REQUESTED_WITH')) !== 'xmlhttprequest') {
+			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
 				
 				$this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
@@ -32,8 +32,8 @@ class ReCaptcha2Invisible extends \PreApp\Model
 						//$recaptcha = new \ReCaptcha\ReCaptcha( env('PREAPP_GOOGLE_RECAPTCHA2_PRIVATE_KEY'), new \ReCaptcha\RequestMethod\SocketPost());
 					}
 					
-					$resp = $recaptcha->setExpectedHostname( apache_getenv('HTTP_HOST') )
-								->verify( $_POST['g-recaptcha-response'], apache_getenv('REMOTE_ADDR') );
+					$resp = $recaptcha->setExpectedHostname( $_SERVER['HTTP_HOST'] )
+								->verify( $_POST['g-recaptcha-response'], $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? null );
 					
 					if( !$resp->isSuccess() && file_exists(PREAPP_ROOT.'/app/view/recaptcha_error.php')) {
 	

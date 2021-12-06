@@ -31,7 +31,7 @@ class PreApp extends \PreApp\Model
 	
 	public function setDomain()
 	{
-		$this->domain = str_replace('www.', '', apache_getenv('HTTP_HOST'));
+		$this->domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
 	}
 	
 	public function getDomain()

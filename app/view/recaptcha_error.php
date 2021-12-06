@@ -21,7 +21,7 @@
 		<?php echo _('SPAM blocked!') ?>
 	</div>
 	
-	<small class="is-size-7"><?php printf(_('%1$s to home page.'), '<a href="'.apache_getenv('REQUEST_SCHEME').'://'.apache_getenv('HTTP_HOST').'">'._('Go back').'</a>') ?></small>
+	<small class="is-size-7"><?php printf(_('%1$s to home page.'), '<a href="'.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'">'._('Go back').'</a>') ?></small>
 	
 </body>
 </html>
