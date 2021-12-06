@@ -6,9 +6,9 @@ class ReCaptcha3 extends \PreApp\Model
 {
 	public function prepend()
 	{
-		if(apache_getenv('REQUEST_METHOD') == 'POST') {
+		if(apache_getenv('REQUEST_METHOD') === 'POST') {
 			
-			if(!apache_getenv('HTTP_X_REQUESTED_WITH') || mb_strtolower(apache_getenv('HTTP_X_REQUESTED_WITH')) != 'xmlhttprequest') {
+			if(!apache_getenv('HTTP_X_REQUESTED_WITH') || mb_strtolower(apache_getenv('HTTP_X_REQUESTED_WITH')) !== 'xmlhttprequest') {
 				
 				$this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
