@@ -30,7 +30,7 @@ composer.phar
 ### App ###
 .env
 .env.*
-!.env.sample
+!.env.dist
 
 auth.json
 
