@@ -7,10 +7,10 @@ class ReCaptcha3Ajax extends \PreApp\Model
 	public function prepend()
 	{
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
 			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-				
-				$this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
 				if(isset($_POST['g-recaptcha-response'])) {
 					
@@ -37,8 +37,18 @@ class ReCaptcha3Ajax extends \PreApp\Model
                         header("HTTP/1.0 400 Bad Request");
 					    die();
 					}
-				}
-			}
+
+				} else {
+
+                    header("HTTP/1.0 400 Bad Request");
+                    die();
+                }
+				
+			} else {
+
+                header("HTTP/1.0 400 Bad Request");
+                die();
+            }
 		}
 	}
 
