@@ -10,7 +10,13 @@ class ReCaptcha3Ajax extends \PreApp\Model
 
             $this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
 			
-			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+			if(
+                // Apache
+			    (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')
+                ||
+                // nginx
+                (!empty($_SERVER['HTTP_SEC_FETCH_MODE']) && mb_strtolower($_SERVER['HTTP_SEC_FETCH_MODE']) === 'cors')
+            ) {
 			
 				if(isset($_POST['g-recaptcha-response'])) {
 					

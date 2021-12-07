@@ -9,8 +9,14 @@ class ReCaptcha2Invisible extends \PreApp\Model
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $this->get('Logger')->info( __CLASS__ .' -> '. __FUNCTION__ );
-			
-			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
+
+            if(
+                // Apache
+                (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
+                &&
+                // nginx
+                (empty($_SERVER['HTTP_SEC_FETCH_MODE']) || mb_strtolower($_SERVER['HTTP_SEC_FETCH_MODE']) !== 'cors')
+            ) {
 			
 				if(isset($_POST['g-recaptcha-response']) && isset($_POST['preapp_postdata'])) {
 					
